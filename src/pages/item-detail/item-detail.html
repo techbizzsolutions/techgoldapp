@@ -1,0 +1,59 @@
+<ion-header>
+
+    <ion-navbar color="header">
+        <ion-title>Item Detail</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="register">
+        <ion-item>
+            <ion-label floating>Item Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <div padding-horizontal>
+            <div class="alert" *ngIf="!register.controls['name'].valid && register.controls['name'].touched">Please Enter Item Name</div>
+        </div>
+        <ion-row>
+            <ion-col col-8>
+                <ion-item>
+                    <ion-label floating>Item Weight</ion-label>
+                    <ion-input type="number" formControlName="weight"></ion-input>
+                </ion-item>
+                <div padding-horizontal>
+                    <div class="alert" *ngIf="!register.controls['weight'].valid && register.controls['weight'].touched">Please Enter Item Weight</div>
+                </div>
+            </ion-col>
+            <ion-col col-4>
+                <ion-item>
+                    <ion-label floating>Item Unit</ion-label>
+                    <ion-input type="text" formControlName="Unit"></ion-input>
+                </ion-item>
+                <div padding-horizontal>
+                    <div class="alert" *ngIf="!register.controls['Unit'].valid && register.controls['Unit'].touched">Please Enter Item Unit</div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-item>
+            <ion-label floating>Item Rate</ion-label>
+            <ion-input type="number" formControlName="rate"></ion-input>
+        </ion-item>
+        <div padding-horizontal>
+            <div class="alert" *ngIf="!register.controls['rate'].valid && register.controls['rate'].touched">Please Enter Item Rate</div>
+        </div>
+        <ion-label> Amount: {{amount}}</ion-label>
+        <div class="button_div">
+            <button ion-button small (click)="cal()" [disabled]="!register.valid">
+                     Calculate Amount
+            </button>
+        </div>
+        <!-- Float the icon right -->
+        <div class="button_div">
+            <button ion-button (click)="logForm()" [disabled]="!register.valid" block icon-right>
+            Add Item
+      </button>
+        </div>
+    </form>
+</ion-content>

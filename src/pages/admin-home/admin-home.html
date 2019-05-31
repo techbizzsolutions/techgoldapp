@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-navbar color="header">
+        <ion-buttons left>
+            <button ion-button menuToggle>
+        <ion-icon name="md-list"></ion-icon>
+      </button>
+        </ion-buttons>
+        <ion-title>Oswal Jewellers</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+            <button ion-button icon-only (click)="presentDatePopover($event)">
+        <ion-icon name="ios-funnel"></ion-icon>
+      </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-card *ngIf="bill.length">
+        <p class="removmargin" *ngIf="saleAmount">Total Sale Amount: {{saleAmount}}</p>
+        <p class="removmargin" *ngIf="saleWeight">Total Sale Weight: {{saleWeight}} grm</p>
+        <p class="removmargin" *ngIf="modeamount">Total Mode Amount: {{modeamount}}</p>
+        <p class="removmargin" *ngIf="totalModeWeight">Total Mode Weight: {{totalModeWeight}} grm</p>
+        <p class="removmargin" *ngIf="weight">Total Weight: {{weight}} grm</p>
+        <p class="removmargin" *ngIf="goldweight">Total Gold Mode: {{goldweight}} grm</p>
+        <p class="removmargin" *ngIf="silverweight">Total Silver Mode: {{silverweight}} grm</p>
+        <p class="removmargin" *ngIf="otherweight">Total Other Mode: {{otherweight}} grm</p>
+    </ion-card>
+
+    <ion-list *ngIf="bill.length">
+        <ion-item-sliding #slidingItem *ngFor="let item of bill">
+
+            <ion-item (click)="itemclick(item)">
+                <ion-card>
+                    <h6>Name: {{item.Name}}</h6>
+                    <h6>Mobile: {{item.Mobile}}</h6>
+                    <h6>Type of Sale: {{item.type}}</h6>
+                    <p>Created Date: {{item.date}}</p>
+                    <p>Amount: {{item.saleamount}}
+                        <span>, Sale Weight: {{item.totalSaleWeight}} grm</span>
+                        <span *ngIf="item.totalModemamount">, Mode Amount: {{item.totalModemamount}}</span>
+                        <span *ngIf="item.totalModeWeight">, Mode Weight: {{item.totalModeWeight}} grm</span>
+                    </p>
+                </ion-card>
+            </ion-item>
+
+            <ion-item-options side="right">
+                <button ion-button color="primary" (click)="edit(item,slidingItem)">
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
+                <button ion-button color="danger" (click)="delete(item,slidingItem)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-card *ngIf="!bill.length">
+        <h6>No data found</h6>
+    </ion-card>
+</ion-content>

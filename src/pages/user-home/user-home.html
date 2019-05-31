@@ -1,0 +1,31 @@
+<ion-header>
+
+    <ion-navbar color="header">
+        <ion-buttons left>
+            <button ion-button menuToggle>
+                <ion-icon name="md-list"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>Oswal Jewellers</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <ion-label>Select Type of Sale</ion-label>
+        <ion-select interface="popover" [(ngModel)]="Type">
+            <ion-option value="Gold">Gold</ion-option>
+            <ion-option value="Silver">Silver</ion-option>
+            <ion-option value="Stone">Stone</ion-option>
+            <ion-option value="Type 92.50">Type 92.50</ion-option>
+            <ion-option value="Kale Money Less">Kale Money Less</ion-option>
+        </ion-select>
+    </ion-item>
+    <div class="button_div">
+        <button ion-button block icon-right (click)="next()">
+           Next
+           <ion-icon name="md-arrow-round-forward"></ion-icon>
+      </button>
+    </div>
+</ion-content>

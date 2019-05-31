@@ -1,0 +1,60 @@
+<ion-header>
+
+    <ion-navbar color="header">
+        <ion-title>Mode Detail</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <ion-label>Select Type of Mode</ion-label>
+        <ion-select interface="popover" [(ngModel)]="Type">
+            <ion-option value="Gold">Gold</ion-option>
+            <ion-option value="Silver">Silver</ion-option>
+            <ion-option value="Other">Other</ion-option>
+        </ion-select>
+    </ion-item>
+    <form [formGroup]="register" (ngSubmit)="logForm()">
+        <ion-item>
+            <ion-label floating>Item Detail</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <div padding-horizontal>
+            <div class="alert" *ngIf="!register.controls['name'].valid && register.controls['name'].touched">Please Enter Item Detail</div>
+        </div>
+        <ion-row>
+            <ion-col col-8>
+                <ion-item>
+                    <ion-label floating>Item Weight</ion-label>
+                    <ion-input type="number" formControlName="weight"></ion-input>
+                </ion-item>
+                <div padding-horizontal>
+                    <div class="alert" *ngIf="!register.controls['weight'].valid && register.controls['weight'].touched">Please Enter Item Weight</div>
+                </div>
+            </ion-col>
+            <ion-col col-4>
+                <ion-item>
+                    <ion-label floating>Item Unit</ion-label>
+                    <ion-input type="text" formControlName="Unit"></ion-input>
+                </ion-item>
+                <div padding-horizontal>
+                    <div class="alert" *ngIf="!register.controls['Unit'].valid && register.controls['Unit'].touched">Please Enter Item Unit</div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-item>
+            <ion-label floating>Item Amount</ion-label>
+            <ion-input type="number" formControlName="amount"></ion-input>
+        </ion-item>
+        <div padding-horizontal>
+            <div class="alert" *ngIf="!register.controls['amount'].valid && register.controls['amount'].touched">Please Enter Item Amount</div>
+        </div>
+        <!-- Float the icon right -->
+        <div class="button_div">
+            <button ion-button [disabled]="!register.valid" block icon-right>
+            Add Mode
+      </button>
+        </div>
+    </form>
+</ion-content>

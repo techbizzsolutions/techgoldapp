@@ -1,0 +1,152 @@
+<ion-header>
+
+    <ion-navbar color="header">
+        <ion-title>Oswal Jewellers</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="print()">
+                <ion-icon name="md-print"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <div id="print" class="borderdivP">
+        <p class="removeMrgin">Estimate</p>
+        <table *ngIf="companyinfo" style="width:100%">
+            <tr>
+                <td>
+                    <p class="removeMrgin">
+                        <strong style="font-size: 13px!important;">{{companyinfo.Name}}</strong>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="removeMrgin">{{companyinfo.Address}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="removeMrgin">Tel ph no:
+                        <strong>{{companyinfo.TelOne}}, {{companyinfo.TelTwo}}</strong>
+                    </p>
+                    <p class="removeMrgin">Mobile:
+                        <strong>{{companyinfo.MobileOne}}, {{companyinfo.MobileTwo}}</strong>
+                    </p>
+                    <p class="removeMrgin">Email:
+                        <strong>{{companyinfo.Email}}</strong>
+                    </p>
+                    <p class="removeMrgin">Website:
+                        <strong>{{companyinfo.Website}}</strong>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <table *ngIf="Bills" style="width:100%">
+            <tr>
+                <td class="tablealign">
+                    <p class="removeMrginpadding">To,</p>
+                    <p class="removeMrginpadding">Customer Name:
+                        <strong>{{Bills.Name}}</strong>
+                    </p>
+                    <p class="removeMrginpadding">Address:
+                        <strong>{{Bills.Address}}</strong>
+                    </p>
+                    <p class="removeMrginpadding">Mobile:
+                        <strong>{{Bills.Mobile}}</strong>
+                    </p>
+                </td>
+                <td class="tablealign">
+                    <p class="removeMrginpadding">Bill No.:
+                        <strong>{{Bills.Bill}}</strong>
+                    </p>
+                    <p class="removeMrginpadding">Date:
+                        <strong>{{Bills.date}}</strong>
+                    </p>
+                    <p class="removeMrginpadding">Created By:
+                        <strong>{{Bills.createdBy}}</strong>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <div style="overflow-x:auto;">
+            <table *ngIf="Bills" style="width:100%">
+                <tr class="bckcolor">
+                    <th>Sr. no.</th>
+                    <th>Item Name</th>
+                    <th>Gross Weight</th>
+                    <th>Kale Money less</th>
+                    <th>Stone Money less</th>
+                    <th>Net Weight</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                </tr>
+                <tr *ngFor="let item of Bills.items; let i=index;">
+                    <td>{{i + 1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.weight}} {{item.Unit}}</td>
+                    <td *ngIf="Bills.type == 'Kale Money Less'">{{item.Oldweight}} {{item.oldUnit}}</td>
+                    <td *ngIf="Bills.type != 'Kale Money Less'"></td>
+                    <td *ngIf="Bills.type == 'Stone'">{{item.Oldweight}} {{item.oldUnit}}</td>
+                    <td *ngIf="Bills.type != 'Stone'"></td>
+                    <td *ngIf="Bills.type == 'Stone' || Bills.type == 'Kale Money Less'">{{item.weight - item.Oldweight}} {{item.Unit}}</td>
+                    <td *ngIf="Bills.type != 'Stone' && Bills.type != 'Kale Money Less'">{{item.weight}} {{item.Unit}}</td>
+                    <td>{{item.rate}}</td>
+                    <td>{{item.amount}}</td>
+                </tr>
+            </table>
+        </div>
+        <table *ngIf="Bills" style="width:100%">
+            <tr>
+                <td class="tablealign">
+                    <p class="removeMrginpadding">
+                        <strong>Mode Detail:</strong>
+                    </p>
+                    <table style="width:100%">
+                        <tr class="bckcolor">
+                            <th>Type</th>
+                            <th>Item Name</th>
+                            <th>Amount</th>
+                        </tr>
+                        <tr *ngFor="let item of Bills.modes; let i=index;">
+                            <td>{{item.modetype}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.amount}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="tablealign">
+                    <p class="removeMrginpadding">Basic Amount Total:
+                        <strong>{{Bills.totalItemamount}}</strong>
+                    </p>
+                    <p class="removeMrginpadding">Mode Amount Total:
+                        <strong>{{Bills.totalModemamount}}</strong>
+                    </p>
+                    <p class="removeMrginpadding">Labour Charges:
+                        <strong>{{Bills.labourcharge}}</strong>
+                    </p>
+                    <p class="removeMrginpadding">Gross Amount Total:
+                        <strong>{{grossamount}}</strong>
+                    </p>
+                    <p class="removeMrginpadding">Discount Amount:
+                        <strong>{{Bills.discount}}</strong>
+                    </p>
+                    <p class="removeMrginpadding">Net Amount Total:
+                        <strong>{{Bills.saleamount}}</strong>
+                    </p>
+                </td>
+            </tr>
+
+        </table>
+        <table *ngIf="companyinfo" style="width:100%">
+            <tr>
+                <td>
+                    <strong>Term and Conditions:</strong>
+                    <p class="removeMrginpadding" style="text-align: justify;">{{companyinfo.Term}}</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</ion-content>
